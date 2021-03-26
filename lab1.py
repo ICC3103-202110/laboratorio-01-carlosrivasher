@@ -1,5 +1,16 @@
-n = int(input("¿Cuantos pares de carta desea jugar? (Con numeros por favor): "))
+import random
+n = int(input("with how many cards do you want to play?? (only numbers please): "))
 
-j1 = input("Ingrese nombre del jugador 1: ")
+p_j1 = 0
+p_j2 = 0
 
-j2 = input("Ingrese nombre del jugador 1: ")
+cartas = [[],[]]
+for i in range(1, n+1):
+    cartas[0].append(i)
+    cartas[1].append(i)
+
+random.shuffle(cartas[0])
+random.shuffle(cartas[1])
+
+for i in range(len(cartas)):
+    print(cartas[i])
