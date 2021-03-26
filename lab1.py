@@ -27,6 +27,43 @@ def players(player):
         player=1
     return player
 
+def play(cards,board,n,points1,points2,player):
+    while points1+points2 < n:
+        r1 = int(input("First card, Choose a row: "))
+        c1 = int(input("First card, Choose a column: "))
+        while r1<1 or r1>2 or c1<1 or c1>n:
+            print("Invalid numbers, please choose again")
+            r1 = int(input("First card, Choose a row: "))
+            c1 = int(input("First card, Choose a column: "))
+        a = cards[r1-1][c1-1]
+        print("The card is", a)
+        r2 = int(input("Second card, Choose a row: "))
+        c2 = int(input("Second card, Choose a column: "))
+        while r2<1 or r2>2 or c2<1 or c2>n:
+            print("Invalid numbers, please choose again")
+            r2 = int(input("Second card, Choose a row: "))
+            c2 = int(input("Second card, Choose a column: "))
+        b = cards[r2-1][c2-1]
+        print("The card is", b)
+        if a==b:
+            print("You won a point, keep playing")
+            if player==1:
+                points1+=1
+            elif player==2:
+                points2+=1
+            board_print(board)
+            print("Player 1 points:", points1)
+            print("Player 2 points:", points2)
+            play(cards,board,n,points1,points2,player)
+        elif a != b:
+            print("You failed")
+            player = players(player)
+            board_print(board)
+            print("Player 1 points:", points1)
+            print("Player 2 points:", points2)
+            print("Player", player,"plays")
+            play(cards,board,n,points1,points2,player)
+
 n = int(input("with how many cards do you want to play? (with number please): "))
 points1 = 0
 points2 = 0
@@ -34,9 +71,11 @@ player=1
 
 cards = matriz_cards(n)
 board = game_board(n)
-
+board_print(cards)
 board_print(board)
 print("Player 1 begins")
+
+play(cards,board,n,points1,points2,player)
 
 if points1 > points2:
     print("PLAYER 1 WINS WITH", points1, "POINTS")
