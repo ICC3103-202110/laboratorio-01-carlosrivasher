@@ -51,10 +51,16 @@ def play(cards,board,n,points1,points2,player): #juego entero
         r1 = int(input("First card, Choose a row: "))
         c1 = int(input("First card, Choose a column: "))
         while r1<1 or r1>2 or c1<1 or c1>n:
+            print("-------------")
+            board_print(board)
+            print("-------------")
             print("Invalid numbers, please choose again")
             r1 = int(input("First card, Choose a row: "))
             c1 = int(input("First card, Choose a column: "))
         while board[r1-1][c1-1] == " ":
+            print("-------------")
+            board_print(board)
+            print("-------------")
             print("The card has already been chosen, please choose again")
             r1 = int(input("First card, Choose a row: "))
             c1 = int(input("First card, Choose a column: "))
@@ -67,16 +73,25 @@ def play(cards,board,n,points1,points2,player): #juego entero
         r2 = int(input("Second card, Choose a row: "))
         c2 = int(input("Second card, Choose a column: "))
         while r2<1 or r2>2 or c2<1 or c2>n:
+            print("-------------")
+            board_print(board)
+            print("-------------")
             print("INVALID NUMBERS, please choose again")
             print("-------------")
             r2 = int(input("Second card, Choose a row: "))
             c2 = int(input("Second card, Choose a column: "))
         while r1==r2 and c1==c2:
+            print("-------------")
+            board_print(board)
+            print("-------------")
             print("YOU CHOSE THE SAME CARD, please choose again")
             print("-------------")
             r2 = int(input("Second card, Choose a row: "))
             c2 = int(input("Second card, Choose a column: "))
         while board[r2-1][c2-1] == " ":
+            print("-------------")
+            board_print(board)
+            print("-------------")
             print("The card has already been chosen, please choose again")
             r2 = int(input("Second card, Choose a row: "))
             c2 = int(input("Second card, Choose a column: "))
@@ -123,6 +138,8 @@ def play(cards,board,n,points1,points2,player): #juego entero
         print("GAME OVER, DRAW WITH", points1, "POINTS")
 
 n = int(input("with how many cards do you want to play? (with number please): "))
+while n <= 1:
+    n = int(input("Please select 2 or more cards: "))
 points1 = 0 #puntos iniciales jugador 1
 points2 = 0 #puntos iniciales jugador 2
 player = 1 #para que empiece el jugador 1
