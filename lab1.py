@@ -46,23 +46,28 @@ def play(cards,board,n,points1,points2,player):
         b = cards[r2-1][c2-1]
         print("The card is", b)
         if a==b:
-            print("You won a point, keep playing")
             if player==1:
                 points1+=1
             elif player==2:
                 points2+=1
             board_print(board)
+            print("The cards are the same, you won a point, keep playing")
             print("Player 1 points:", points1)
             print("Player 2 points:", points2)
-            play(cards,board,n,points1,points2,player)
+            
         elif a != b:
-            print("You failed")
             player = players(player)
             board_print(board)
+            print("You failed, the cards are different")
             print("Player 1 points:", points1)
             print("Player 2 points:", points2)
             print("Player", player,"plays")
-            play(cards,board,n,points1,points2,player)
+    if points1 > points2:
+        print("GAME OVER, PLAYER 1 WINS WITH", points1, "POINTS")
+    elif points2 > points1:
+        print("GAME OVER, PLAYER 2 WINS WITH", points2, "POINTS")
+    else:
+        print("GAME OVER, DRAW WITH", points1, "POINTS")
 
 n = int(input("with how many cards do you want to play? (with number please): "))
 points1 = 0
@@ -76,10 +81,3 @@ board_print(board)
 print("Player 1 begins")
 
 play(cards,board,n,points1,points2,player)
-
-if points1 > points2:
-    print("PLAYER 1 WINS WITH", points1, "POINTS")
-elif points2 > points1:
-    print("PLAYER 2 WINS WITH", points2, "POINTS")
-else:
-    print("DRAW WITH", points1, "POINTS")
